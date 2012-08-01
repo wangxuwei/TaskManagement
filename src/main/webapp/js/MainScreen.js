@@ -12,16 +12,20 @@
 		var c = this;
 		var $e = this.$element;
 		
-		brite.display("LeftSide").done(function(LeftSide){
-			c.LeftSide = LeftSide;
-		});
 	}
 		
 	MainScreen.prototype.postDisplay = function(data,config){
 		var c = this;
 		var $e = this.$element;
 		
+		brite.display("LeftSide").done(function(LeftSide){
+			c.LeftSide = LeftSide;
+		});
 		
+		$e.on("MainScreen_PROJECT_REFRESH",function(e,extra){
+			$e.trigger("LeftSide_PROJECT_REFRESH",extra);
+			$e.trigger("ProjectInfo_PROJECT_REFRESH",extra);
+		});
 	}
 	// --------- /Component Interface Implementation ---------- //
 	

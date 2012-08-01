@@ -20,42 +20,38 @@ var app = app || {};
 		);		
 		
 		var userTable = [
-			{column:'id',dtype:'INTEGER'},
 			{column:'name',dtype:'TEXT'},
 			{column:'username',dtype:'TEXT'},
 			{column:'password',dtype:'TEXT'},
-			{column:'createdby_id',dtype:'INTEGER'},
-			{column:'created_date',dtype:'TEXT'},
-			{column:'updatedby_id',dtype:'INTEGER'},
-			{column:'updated_date',dtype:'TEXT'}
+			{column:'createdBy_id',dtype:'INTEGER'},
+			{column:'createdDate',dtype:'TEXT'},
+			{column:'updatedBy_id',dtype:'INTEGER'},
+			{column:'updatedDate',dtype:'TEXT'}
 		];
 		
 		var projectTable = [
-			{column:'id',dtype:'INTEGER'},
 			{column:'name',dtype:'TEXT'},
 			{column:'description',dtype:'TEXT'},
-			{column:'createdby_id',dtype:'INTEGER'},
-			{column:'created_date',dtype:'TEXT'},
-			{column:'updatedby_id',dtype:'INTEGER'},
-			{column:'updated_date',dtype:'TEXT'}
+			{column:'createdBy_id',dtype:'INTEGER'},
+			{column:'createdDate',dtype:'TEXT'},
+			{column:'updatedBy_id',dtype:'INTEGER'},
+			{column:'updatedDate',dtype:'TEXT'}
 		];
 		
 		var taskTable = [
-			{column:'id',dtype:'INTEGER'},
 			{column:'name',dtype:'TEXT'},
 			{column:'description',dtype:'TEXT'},
 			{column:'state',dtype:'TEXT'},
-			{column:'start_date',dtype:'TEXT'},
-			{column:'end_date',dtype:'TEXT'},
+			{column:'startDate',dtype:'TEXT'},
+			{column:'endDate',dtype:'TEXT'},
 			{column:'assignee_id',dtype:'INTEGER'},
 			{column:'project_id',dtype:'INTEGER'},
-			{column:'createdby_id',dtype:'INTEGER'},
-			{column:'created_date',dtype:'TEXT'},
-			{column:'updatedby_id',dtype:'INTEGER'},
-			{column:'updated_date',dtype:'TEXT'}
+			{column:'createdBy_id',dtype:'INTEGER'},
+			{column:'createdDate',dtype:'TEXT'},
+			{column:'updatedBy_id',dtype:'INTEGER'},
+			{column:'updatedDate',dtype:'TEXT'}
 		];
 		var projectUserTable = [
-			{column:'id',dtype:'INTEGER'},
 			{column:'user_id',dtype:'INTEGER'},
 			{column:'project_id',dtype:'INTEGER'}
 		];

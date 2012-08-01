@@ -22,7 +22,10 @@
 				createSql += "," + field.column + " " + field.dtype;
 			}
 			createSql += ");";
-			transaction.executeSql(createSql);
+			transaction.executeSql(createSql,null,function(a,b){
+			},function(a,b){
+				console.log(b);
+			});
 		});
 		this._identity = identity;
 		this._tableName = tableName;
