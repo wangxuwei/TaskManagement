@@ -20,10 +20,10 @@ CREATE TABLE project
   	name                        character varying(255) NOT NULL UNIQUE,
   	description					text,
   
-  	createdBy_id               	bigint,
-    createdDate              	timestamp without time zone,
-    updatedBy_id              	bigint,
-    updatedDate           		timestamp without time zone,
+  	createdby_id               	bigint,
+    created_date              	timestamp without time zone,
+    updatedby_id              	bigint,
+    updated_date           		timestamp without time zone,
   
   CONSTRAINT project_pkey PRIMARY KEY (id)
 

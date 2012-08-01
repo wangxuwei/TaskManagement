@@ -16,11 +16,11 @@ public class BaseEntity {
     
     @Column(name="createdby_id")
     private Long    createdBy_id;
-    @Column(name="createddate")
+    @Column(name="created_date")
     private Date    createdDate;
     @Column(name="updatedby_id")
     private Long    updatedBy_id;
-    @Column(name="updateddate")
+    @Column(name="updated_date")
     private Date    updatedDate;
 
     // --------- Persistent Getters & Setters --------- //
