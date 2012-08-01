@@ -1,26 +1,29 @@
 (function($){
 
-	function MainScreen(){};
+	function TasksList(){};
   
 	// --------- Component Interface Implementation ---------- //
-	MainScreen.prototype.create = function(data,config){
-		var html = $("#tmpl-MainScreen").html();
+	TasksList.prototype.create = function(data,config){
+		var html = $("#tmpl-TasksList").html();
 		return $(html);
 	}
 	
-	MainScreen.prototype.init = function(data,config){
+	TasksList.prototype.init = function(data,config){
 		var c = this;
 		var $e = this.$element;
 		
-		brite.display("LeftSide").done(function(LeftSide){
-			c.LeftSide = LeftSide;
+		var $taskContainer = $e.find(".tasksContainer");
+		brite.dao.list("Task",{}).done(function(tasks){
+			for(var i=0 ; i < tasks.length; i++){
+				var task = tasks[i];
+				$taskContainer.append($($("#tmpl-TasksList-taskItem").render(task)));
+			}
 		});
 	}
 		
-	MainScreen.prototype.postDisplay = function(data,config){
+	TasksList.prototype.postDisplay = function(data,config){
 		var c = this;
 		var $e = this.$element;
-		
 		
 	}
 	// --------- /Component Interface Implementation ---------- //
@@ -34,12 +37,12 @@
 	
 	
 	// --------- Component Registration --------- //
-	brite.registerComponent("MainScreen",{
-        parent: "#page",
+	brite.registerComponent("TasksList",{
+        parent: ".centerPanel",
         emptyParent: true,
         loadTmpl:true
     },function(){
-        return new MainScreen();
+        return new TasksList();
     });
 	// --------- /Component Registration --------- //
 })(jQuery);

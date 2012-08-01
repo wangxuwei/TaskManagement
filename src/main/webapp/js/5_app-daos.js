@@ -4,7 +4,7 @@ var app = app || {};
 // --------- Entity Dao Registration --------- //
 (function($){
 	
-	if(mock){
+	if(app.mock){
 		var databaseOptions = {
 				fileName: "TaskManagement",
 				version: "1.0",
