@@ -1,0 +1,26 @@
+<script id="tmpl-TasksList" type="text/html">
+    <div class="TasksList">
+    	<div class="TasksList-top">
+    		<div class="projectTitle">{{:name}}</div>
+    		<div class="buttons">
+    			<div class="btn btnEdit">Edit</div>
+    			<div class="btn btnDelete">Delete</div>
+    		</div>
+    	</div>
+    	<div class="TasksList-center">
+    		<label class="taskTitle">Tasks</label>
+    		<div class="buttons">
+    			<div class="btn btnCreateTask">New Task</div>
+    		</div>
+    		<div class="tasksContainer">
+    			<div class="task" data-obj_id="1">asdfasdf</div>
+    			<div class="task" data-obj_id="1">asdfasdf</div>
+    			<div class="task" data-obj_id="1">asdfasdf</div>
+    			<div class="task" data-obj_id="1">asdfasdf</div>
+    		</div>
+    	</div>
+    </div>
+</script>
+<script id="tmpl-TasksList-taskItem" type="text/html">
+    <div class="task" data-obj_type="task" data-obj_id="{{:id}}">{{:name}}</div>
+</script>

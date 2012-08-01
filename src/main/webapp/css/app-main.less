@@ -4,7 +4,6 @@
 	font-weight: normal;
 	font-family: arial;
 	cursor: default;
-	.user-select(none);
 	.box-sizing(border-box);
 }
 html,body{
@@ -74,3 +73,32 @@ input, textarea, select, .uneditable-input {
 }
 
 
+.field{
+	overflow: auto;
+	padding-right: 20px;
+	margin-bottom: 15px;
+	font-size: 14px;
+}
+
+.field-label{
+	float: left;
+	width: 170px;
+	text-align: left;
+	font-size: inherit; 
+	font-weight: normal;
+	color: #888;
+	margin: 0 20px 0 0;
+	padding-top: 2px;
+	letter-spacing: .1em;
+    position: relative;
+}
+
+.field-value{
+	position: relative;
+	margin-left: 190px;
+	font-size: inherit; 
+	color: #333;
+	padding-top: 2px;
+	min-height: 1.1em;
+	
+}
