@@ -28,6 +28,7 @@
 		
 		$e.on("click",".projectsContainer .project",function(){
 			brite.display("TasksList");
+			brite.display("ProjectInfo");
 		});
 		
 	}

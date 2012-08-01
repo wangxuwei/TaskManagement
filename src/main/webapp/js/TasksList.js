@@ -25,6 +25,10 @@
 		var c = this;
 		var $e = this.$element;
 		
+		$e.on("click",".tasksContainer .task",function(){
+			brite.display("TaskInfo");
+		});
+		
 	}
 	// --------- /Component Interface Implementation ---------- //
 	
