@@ -24,7 +24,6 @@
 		var c = this;
 		var $e = this.$element;
 		var mainScreen = $e.bComponent("MainScreen");
-		
 		mainScreen.$element.on("ProjectInfo_PROJECT_REFRESH",function(e,extra){
 			var project = extra.project;
 			$e.find(".ProjectInfo-top .title").html(project.name);

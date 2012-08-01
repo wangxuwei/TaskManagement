@@ -12,13 +12,7 @@
 		var c = this;
 		var $e = this.$element;
 		
-		var $projectContainer = $e.find(".projectsContainer").empty();
-		brite.dao.list("Project",{}).done(function(projects){
-			for(var i=0 ; i < projects.length; i++){
-				var project = projects[i];
-				$projectContainer.append($($("#tmpl-LeftSide-projectItem").render(project)));
-			}
-		});
+		refreshProjects.call(c);
 	}
 		
 	LeftSide.prototype.postDisplay = function(data,config){
@@ -40,7 +34,7 @@
 			brite.dao.create("Project",project).done(function(newProject){
 				brite.display("TasksList",{projectId:newProject.id});
 				brite.display("ProjectInfo",{projectId:newProject.id});
-				brite.display("LeftSide");
+				refreshProjects.call(c);
 			});
 		});
 		
@@ -58,6 +52,18 @@
 	// --------- /Component Public API --------- //
 	
 	// --------- Component Private API --------- //
+	function refreshProjects(){
+		var c = this;
+		var $e = this.$element;
+		
+		var $projectContainer = $e.find(".projectsContainer").empty();
+		brite.dao.list("Project",{}).done(function(projects){
+			for(var i=0 ; i < projects.length; i++){
+				var project = projects[i];
+				$projectContainer.append($($("#tmpl-LeftSide-projectItem").render(project)));
+			}
+		});
+	}
 	// --------- /Component Private API --------- //	
 	
 	

@@ -18,13 +18,7 @@
 		var c = this;
 		var $e = this.$element;
 		
-		var $taskContainer = $e.find(".tasksContainer");
-		brite.dao.list("Task",{}).done(function(tasks){
-			for(var i=0 ; i < tasks.length; i++){
-				var task = tasks[i];
-				$taskContainer.append($($("#tmpl-TasksList-taskItem").render(task)));
-			}
-		});
+		refreshTasks.call(c);
 	}
 		
 	TasksList.prototype.postDisplay = function(data,config){
@@ -32,6 +26,11 @@
 		var $e = this.$element;
 		var mainScreen = $e.bComponent("MainScreen");
 		var $projectTitle = $e.find(".projectTitle");
+		
+		mainScreen.$element.on("TasksList_TASK_REFRESH",function(e,extra){
+			var task = extra.task;
+			$e.find(".task[data-obj_id='"+task.id+"']").html(task.name);
+		});
 		
 		$e.on("click",".btnEdit",function(){
 			var $input = $("<input type='text' name='projectName' value='"+c.project.name+"' />");
@@ -54,8 +53,24 @@
 			});
 		});
 		
+		
+		$e.on("click",".btnCreateTask",function(){
+			var task = {
+				name:"New Task",
+				state:"New",
+				createdDate:new Date(),
+				project_id:c.project.id,
+				createdBy_id:1
+			}
+			brite.dao.create("Task",task).done(function(newTask){
+				brite.display("TaskInfo",{taskId:newTask.id});
+				refreshTasks.call(c);
+			});
+		});
+		
 		$e.on("click",".tasksContainer .task",function(){
-			brite.display("TaskInfo");
+			var taskObj = $(this).bObjRef();
+			brite.display("TaskInfo",{taskId:taskObj.id});
 		});
 		
 	}
@@ -66,6 +81,18 @@
 	// --------- /Component Public API --------- //
 	
 	// --------- Component Private API --------- //
+	function refreshTasks(){
+		var c = this;
+		var $e = this.$element;
+		
+		var $taskContainer = $e.find(".tasksContainer").empty();
+		brite.dao.list("Task",{match:{project_id:c.project.id}}).done(function(tasks){
+			for(var i=0 ; i < tasks.length; i++){
+				var task = tasks[i];
+				$taskContainer.append($($("#tmpl-TasksList-taskItem").render(task)));
+			}
+		});
+	}
 	// --------- /Component Private API --------- //	
 	
 	

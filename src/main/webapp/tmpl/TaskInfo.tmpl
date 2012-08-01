@@ -1,37 +1,41 @@
 <script id="tmpl-TaskInfo" type="text/html">
     <div class="TaskInfo">
     	<div class="TaskInfo-top">
-    		<div class="title">This is a test</div>
+    		<div class="title">{{:name}}</div>
+    		<div class="buttons">
+    			<div class="btn btnEdit">Edit</div>
+    			<div class="btn btnDelete">Delete</div>
+    		</div>
     	</div>
     	<div class="TaskInfo-center">
-    		<div class="field">
+    		<div class="field " data-property="description">
 				<div class="field-label">Description:</div>
 				<div class="field-value" >
-					sdfdfsdf
+					{{:description}}
 				</div>
 			</div>
     		<div class="field">
 				<div class="field-label">Created by:</div>
 				<div class="field-value" >
-					atest
+					{{:createdBy_id}}
 				</div>
 			</div>
     		<div class="field">
 				<div class="field-label">Status:</div>
 				<div class="field-value" >
-					New
+					{{:state}}
 				</div>
 			</div>
     		<div class="field">
 				<div class="field-label">Assignee:</div>
 				<div class="field-value" >
-					Wang
+					{{:assignee_id}}
 				</div>
 			</div>
     		<div class="field">
 				<div class="field-label">Project:</div>
 				<div class="field-value" >
-					This is a test
+					{{:project_id}}
 				</div>
 			</div>
     	</div>
