@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.britesnow.snow.testsupport.SnowTestSupport;
+import com.britesnow.snow.web.db.hibernate.HibernateDaoHelper;
 import com.britesnow.snow.web.db.hibernate.HibernateSessionInViewHandler;
 import com.taskmanagement.dao.ProjectDao;
 import com.taskmanagement.dao.TaskDao;
@@ -24,6 +25,9 @@ public class EntityTest extends SnowTestSupport {
         HibernateSessionInViewHandler view = appInjector.getInstance(HibernateSessionInViewHandler.class);
         view.openSessionInView();
         System.out.println("begin test entity.");
+
+        HibernateDaoHelper daoHelper = appInjector.getInstance(HibernateDaoHelper.class);
+        daoHelper.executeHql("delete User s where 1=1");
 
         UserDao userDao = appInjector.getInstance(UserDao.class);
         TaskDao taskDao = appInjector.getInstance(TaskDao.class);
@@ -51,9 +55,7 @@ public class EntityTest extends SnowTestSupport {
         String hql = "from User";
         List ls = userDao.search(hql, null);
         Assert.assertTrue(ls.size() == 3);
+        daoHelper.executeHql("delete User s where 1=1");
 
-        userDao.delete(user);
-        userDao.delete(user2);
-        userDao.delete(user3);
     }
 }
