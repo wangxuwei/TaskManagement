@@ -53,6 +53,10 @@
 			});
 		});
 		
+		$e.on("click",".btnAddUser",function(){
+			brite.display("ProjectUsers");
+		});
+		
 		
 		$e.on("click",".btnCreateTask",function(){
 			var task = {
