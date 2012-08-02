@@ -40,11 +40,11 @@ public class Project extends BaseEntity {
         this.description = description;
     }
 
-    public Set getUserSet() {
+    public Set<User> getUserSet() {
         return userSet;
     }
 
-    public void setUserSet(Set userSet) {
+    public void setUserSet(Set<User> userSet) {
         this.userSet = userSet;
     }
 }

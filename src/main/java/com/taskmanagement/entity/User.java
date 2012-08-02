@@ -49,11 +49,11 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
-    public Set getProjectSet() {
+    public Set<Project> getProjectSet() {
         return projectSet;
     }
 
-    public void setProjectSet(Set projectSet) {
+    public void setProjectSet(Set<Project> projectSet) {
         this.projectSet = projectSet;
     }
 }
