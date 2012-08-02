@@ -29,22 +29,6 @@ public class EntityTest extends SnowTestSupport {
         TaskDao taskDao = appInjector.getInstance(TaskDao.class);
         ProjectDao projectDao = appInjector.getInstance(ProjectDao.class);
 
-        String hql = "from Task";
-        List ls1 = taskDao.search(hql, null);
-        taskDao.delete(ls1);
-
-        hql = "from Project";
-        List ls2 = projectDao.search(hql, null);
-        projectDao.delete(ls2);
-
-        hql = "from User";
-        List ls3 = userDao.search(hql, null);
-        System.out.println("--->" + ls3.size());
-        for (int i = 0; i < ls3.size(); i++) {
-            User user = (User) ls3.get(i);
-            System.out.println("delete User:" + user.getUsername());
-            userDao.delete(user);
-        }
         User user = new User();
         user.setName("super");
         user.setPassword("1");
@@ -60,12 +44,16 @@ public class EntityTest extends SnowTestSupport {
         user3.setPassword("1");
         user3.setUsername("client2");
 
-        userDao.save(user);
-        userDao.save(user2);
-        userDao.save(user3);
+        user = userDao.save(user);
+        user2 = userDao.save(user2);
+        user3 = userDao.save(user3);
 
-        hql = "from User";
+        String hql = "from User";
         List ls = userDao.search(hql, null);
         Assert.assertTrue(ls.size() == 3);
+
+        userDao.delete(user);
+        userDao.delete(user2);
+        userDao.delete(user3);
     }
 }
