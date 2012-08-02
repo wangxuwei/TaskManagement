@@ -3,6 +3,8 @@ package com.taskmanagement.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -12,14 +14,22 @@ import javax.persistence.Table;
 @Table(name = "tm.task")
 @javax.persistence.SequenceGenerator(name = "SEQ_STORE", allocationSize = 1, sequenceName = "tm.task_id_seq")
 public class Task extends BaseEntity {
-    private String name;
-    private String description;
+    private String  name;
+    private String  description;
 
-    private String state;
-    private Date   start_date;
-    private Date   end_date;
-    private Long   assignee_id;
-    private Long   project_id;
+    private String  state;
+    private Date    start_date;
+    private Date    end_date;
+
+    @ManyToOne
+    @JoinColumn(name = "assignee_id", insertable = false, updatable = false)
+    private User    assignee;
+    private Long    assignee_id;
+    
+    @ManyToOne
+    @JoinColumn(name = "project_id", insertable = false, updatable = false)
+    private Project project;
+    private Long    project_id;
 
     public String getName() {
         return name;
