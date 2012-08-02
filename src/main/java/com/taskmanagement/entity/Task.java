@@ -25,7 +25,7 @@ public class Task extends BaseEntity {
     @JoinColumn(name = "assignee_id", insertable = false, updatable = false)
     private User    assignee;
     private Long    assignee_id;
-    
+
     @ManyToOne
     @JoinColumn(name = "project_id", insertable = false, updatable = false)
     private Project project;
@@ -85,5 +85,21 @@ public class Task extends BaseEntity {
 
     public void setProject_id(Long project_id) {
         this.project_id = project_id;
+    }
+
+    public User getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(User assignee) {
+        this.assignee = assignee;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }
