@@ -73,6 +73,15 @@
 			var assignee_id = c.task.assignee_id && c.task.description != null ? c.task.description : "";
 			var $input = $("<select  name='taskAssignee_id'></select>");
 			$input.appendTo($fieldValue.empty());
+			$input.append($($("#tmpl-TaskInfo-assigneeItem").render({id:"",username:"select a assignee"})));
+			brite.dao.get("Project",c.task.project_id).done(function(project){
+				var users = project.userSet;
+				for(var i=0 ; i < users.length; i++){
+					var user = users[i];
+					$input.append($($("#tmpl-TaskInfo-assigneeItem").render(user)));
+				}
+				$input.val(c.task.assignee_id);
+			});
 		});
 		
 		$e.on("change","select[name='taskAssignee_id']",function(){
