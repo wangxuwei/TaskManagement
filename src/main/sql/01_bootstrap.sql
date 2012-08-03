@@ -1,14 +1,14 @@
-INSERT INTO "tmuser" VALUES ('1', 'test1', 'test1', '1', null, null, null, null);
-INSERT INTO "tmuser" VALUES ('2', 'test2', 'test2', '1', null, null, null, null);
-INSERT INTO "tmuser" VALUES ('3', 'test3', 'test3', '1', null, null, null, null);
+INSERT INTO "tmuser" (name,username,password) VALUES ('test1', 'test1', '1');
+INSERT INTO "tmuser" (name,username,password) VALUES ('test2', 'test2', '1');
+INSERT INTO "tmuser" (name,username,password) VALUES ('test3', 'test3', '1');
 
 
 
-INSERT INTO "project" VALUES ('1', 'project1', 'desc1', '1', '2012-08-03 10:46:26', null, null);
-INSERT INTO "project" VALUES ('2', 'project2', 'desc2', '1', '2012-08-01 10:46:40', null, null);
+INSERT INTO "project" (name,description,createdBy_id) VALUES ( 'project1', 'desc1', '1');
+INSERT INTO "project" (name,description,createdBy_id) VALUES ( 'project2', 'desc2', '1');
 
 
-INSERT INTO "task" VALUES ('1', 'task1', 'd', '0', '2012-08-02 10:47:29', '2012-08-06 10:47:33', '1', '1', '1', null, null, null);
+INSERT INTO "task" (name,description,state,createdBy_id,project_id,assignee_id) VALUES ('task1', 'd', 'New',  1, 1, 1);
 
 
 INSERT INTO "project_user" VALUES ('1', '1');
