@@ -25,6 +25,12 @@
 			$e.find(".project[data-obj_id='"+project.id+"']").html(project.name);
 		});
 		
+		$e.on("click",".btnLogoff",function(){
+			logoff().done(function(){
+				window.location = contextPath;
+			});
+		});
+		
 		$e.on("click",".btnCreateProject",function(){
 			var project = {
 				name:"New project",
@@ -67,6 +73,19 @@
 				var project = projects[i];
 				$projectContainer.append($($("#tmpl-LeftSide-projectItem").render(project)));
 			}
+		});
+	}
+	function logoff(){
+		var reqData = {
+			action: "logoff"
+		}
+		return $.ajax({
+			type: "POST",
+			url: jsonUrl,
+			data: reqData,
+			dataType: "json"
+		}).pipe( function(val) {
+			return val;
 		});
 	}
 	// --------- /Component Private API --------- //	

@@ -60,9 +60,9 @@ public class TmAuthService {
         }
     }
 
-    @WebModelHandler
-    public void logout(@WebParam("userId") Long userId) {
-        //remove user id from session
+    @WebActionHandler
+    public void logoff(RequestContext rc) {
+        setUserToSession(rc, null);
     }
 
     @WebActionHandler
