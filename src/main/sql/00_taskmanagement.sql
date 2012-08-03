@@ -19,7 +19,7 @@ SET search_path TO tm;
 CREATE TABLE tmuser
 (
   	id                          bigserial NOT NULL,
-  	name                        character varying(255) NOT NULL UNIQUE,
+  	name                        character varying(255) NOT NULL,
   	username					 character varying(255),
  	 password                      character varying(255),
   
@@ -29,14 +29,14 @@ CREATE TABLE tmuser
     updated_date           		timestamp without time zone,
   
   CONSTRAINT user_pkey PRIMARY KEY (id),
-  CONSTRAINT "FK_USER_CREATEID" FOREIGN KEY ("createdby_id") REFERENCES "tm"."tmuser" ("id") ON UPDATE NO ACTION ON DELETE NO ACTION NOT DEFERRABLE INITIALLY IMMEDIATE,
-  CONSTRAINT "FK_USER_UPDATEID" FOREIGN KEY ("updatedby_id") REFERENCES "tm"."tmuser" ("id") ON UPDATE NO ACTION ON DELETE NO ACTION NOT DEFERRABLE INITIALLY IMMEDIATE
+  CONSTRAINT "FK_USER_CREATEID" FOREIGN KEY ("createdby_id") REFERENCES "tm"."tmuser" ("id") ON UPDATE NO ACTION ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE,
+  CONSTRAINT "FK_USER_UPDATEID" FOREIGN KEY ("updatedby_id") REFERENCES "tm"."tmuser" ("id") ON UPDATE NO ACTION ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE
 );
 
 CREATE TABLE project
 (
   	id                          bigserial NOT NULL,
-  	name                        character varying(255) NOT NULL UNIQUE,
+  	name                        character varying(255) NOT NULL,
   	description					text,
   
   	createdby_id               	bigint,
@@ -45,15 +45,15 @@ CREATE TABLE project
     updated_date           		timestamp without time zone,
   
   CONSTRAINT project_pkey PRIMARY KEY (id),
-  CONSTRAINT "FK_PROJECT_CREATEID" FOREIGN KEY ("createdby_id") REFERENCES "tm"."tmuser" ("id") ON UPDATE NO ACTION ON DELETE NO ACTION NOT DEFERRABLE INITIALLY IMMEDIATE,
-  CONSTRAINT "FK_PROJECT_UPDATEID" FOREIGN KEY ("updatedby_id") REFERENCES "tm"."tmuser" ("id") ON UPDATE NO ACTION ON DELETE NO ACTION NOT DEFERRABLE INITIALLY IMMEDIATE
+  CONSTRAINT "FK_PROJECT_CREATEID" FOREIGN KEY ("createdby_id") REFERENCES "tm"."tmuser" ("id") ON UPDATE NO ACTION ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE,
+  CONSTRAINT "FK_PROJECT_UPDATEID" FOREIGN KEY ("updatedby_id") REFERENCES "tm"."tmuser" ("id") ON UPDATE NO ACTION ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE
 
 );
 
 CREATE TABLE task
 (
   	id                          bigserial NOT NULL,
-  	name                        character varying(255) NOT NULL UNIQUE,
+  	name                        character varying(255) NOT NULL,
   	description					text,
  	 state                      character varying(255),
 	  start_date              	timestamp without time zone,
@@ -67,10 +67,10 @@ CREATE TABLE task
     updated_date           		timestamp without time zone,
   
   CONSTRAINT task_pkey PRIMARY KEY (id),
-  CONSTRAINT "FK_TASK_PROJECTID" FOREIGN KEY ("project_id") REFERENCES "tm"."project" ("id") ON UPDATE NO ACTION ON DELETE NO ACTION NOT DEFERRABLE INITIALLY IMMEDIATE,
-  CONSTRAINT "FK_TASK_ASSIGNEEID" FOREIGN KEY ("assignee_id") REFERENCES "tm"."tmuser" ("id") ON UPDATE NO ACTION ON DELETE NO ACTION NOT DEFERRABLE INITIALLY IMMEDIATE,
-  CONSTRAINT "FK_TASK_CREATEID" FOREIGN KEY ("createdby_id") REFERENCES "tm"."tmuser" ("id") ON UPDATE NO ACTION ON DELETE NO ACTION NOT DEFERRABLE INITIALLY IMMEDIATE,
-  CONSTRAINT "FK_TASK_UPDATEID" FOREIGN KEY ("updatedby_id") REFERENCES "tm"."tmuser" ("id") ON UPDATE NO ACTION ON DELETE NO ACTION NOT DEFERRABLE INITIALLY IMMEDIATE
+  CONSTRAINT "FK_TASK_PROJECTID" FOREIGN KEY ("project_id") REFERENCES "tm"."project" ("id") ON UPDATE NO ACTION ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE,
+  CONSTRAINT "FK_TASK_ASSIGNEEID" FOREIGN KEY ("assignee_id") REFERENCES "tm"."tmuser" ("id") ON UPDATE NO ACTION ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE,
+  CONSTRAINT "FK_TASK_CREATEID" FOREIGN KEY ("createdby_id") REFERENCES "tm"."tmuser" ("id") ON UPDATE NO ACTION ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE,
+  CONSTRAINT "FK_TASK_UPDATEID" FOREIGN KEY ("updatedby_id") REFERENCES "tm"."tmuser" ("id") ON UPDATE NO ACTION ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE
 
 );
 
