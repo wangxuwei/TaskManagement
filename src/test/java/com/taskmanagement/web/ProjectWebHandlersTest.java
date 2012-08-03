@@ -40,8 +40,8 @@ public class ProjectWebHandlersTest extends SnowTestSupport {
         UserDao userDao = (UserDao) appInjector.getInstance(UserDao.class);
         ProjectDao projectDao = appInjector.getInstance(ProjectDao.class);
 
-        daoHelper.executeHql("delete User s where 1=1");
-        daoHelper.executeHql("delete Project s where 1=1");
+        daoHelper.executeHql("delete User s where name='abcd'");
+        daoHelper.executeHql("delete Project s where name='test'");
 
 
         userDao.save(user);
@@ -74,8 +74,8 @@ public class ProjectWebHandlersTest extends SnowTestSupport {
         UserDao userDao = (UserDao) appInjector.getInstance(UserDao.class);
         ProjectDao projectDao = appInjector.getInstance(ProjectDao.class);
 
-        daoHelper.executeHql("delete User s where 1=1");
-        daoHelper.executeHql("delete Project s where 1=1");
+        daoHelper.executeHql("delete User s where name='abcd'");
+        daoHelper.executeHql("delete Project s where name='test'");
 
 
         userDao.save(user);
@@ -115,8 +115,8 @@ public class ProjectWebHandlersTest extends SnowTestSupport {
         UserDao userDao = (UserDao) appInjector.getInstance(UserDao.class);
         ProjectDao projectDao = appInjector.getInstance(ProjectDao.class);
 
-        daoHelper.executeHql("delete User s where 1=1");
-        daoHelper.executeHql("delete Project s where 1=1");
+        daoHelper.executeHql("delete User s where name='test'");
+        daoHelper.executeHql("delete Project s where name='test'");
 
 
         userDao.save(user);
@@ -158,8 +158,8 @@ public class ProjectWebHandlersTest extends SnowTestSupport {
         UserDao userDao = (UserDao) appInjector.getInstance(UserDao.class);
         ProjectDao projectDao = appInjector.getInstance(ProjectDao.class);
 
-        daoHelper.executeHql("delete User s where 1=1");
-        daoHelper.executeHql("delete Project s where 1=1");
+        daoHelper.executeHql("delete User s where name='test'");
+        daoHelper.executeHql("delete Project s where name='test'");
 
 
         userDao.save(user);
@@ -199,8 +199,8 @@ public class ProjectWebHandlersTest extends SnowTestSupport {
         UserDao userDao = (UserDao) appInjector.getInstance(UserDao.class);
         ProjectDao projectDao = appInjector.getInstance(ProjectDao.class);
 
-        daoHelper.executeHql("delete User s where 1=1");
-        daoHelper.executeHql("delete Project s where 1=1");
+        daoHelper.executeHql("delete User s where name='test'");
+        daoHelper.executeHql("delete Project s where name='test'");
 
 
         userDao.save(user);

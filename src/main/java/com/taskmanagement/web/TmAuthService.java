@@ -1,9 +1,6 @@
 package com.taskmanagement.web;
 
 
-import java.util.List;
-import java.util.Map;
-
 import com.britesnow.snow.web.RequestContext;
 import com.britesnow.snow.web.handler.annotation.WebActionHandler;
 import com.britesnow.snow.web.handler.annotation.WebModelHandler;
@@ -13,13 +10,17 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.taskmanagement.dao.UserDao;
 import com.taskmanagement.entity.User;
+import net.sf.json.JSONObject;
+
+import java.util.List;
+import java.util.Map;
 
 
 @Singleton
 public class TmAuthService {
     @Inject
     UserDao userDao;
-    
+
     @WebModelHandler(startsWith = "/")
     public void pageIndex(@WebModel Map m, RequestContext rc) {
         //gameTestManager.init();
@@ -36,6 +37,7 @@ public class TmAuthService {
                     User user = users.get(0);
                     if (authentication(user, password)) {
                         setUserToSession(rc, user);
+                        String s = JSONObject.fromObject(user).toString();
                         return user;
                     } else {
 
@@ -57,9 +59,9 @@ public class TmAuthService {
         }
     }
 
-    @WebActionHandler
-    public void logoff(RequestContext rc) {
-        setUserToSession(rc, null);
+    @WebModelHandler
+    public void logout(@WebParam("userId") Long userId) {
+        //remove user id from session
     }
 
     @WebActionHandler
@@ -86,24 +88,25 @@ public class TmAuthService {
     // --------- Private Helpers --------- //
     // store the user in the session. If user == null, then, remove it.
     private void setUserToSession(RequestContext rc, User user) {
-        if (user != null) {
+/*        if (user != null) {
             rc.getReq().getSession(true).setAttribute("userid", user.getId());
         } else {
             if (rc.getReq().getSession() != null) {
                 rc.getReq().getSession().removeAttribute("userid");
             }
 
-        }
+        }*/
     }
 
     private User getUserFromSession(RequestContext rc) {
-        Long userId = (Long) rc.getReq().getSession().getAttribute("userid");
+/*        Long userId = (Long) rc.getReq().getSession().getAttribute("userid");
         if (userId != null) {
             User user = userDao.get(userId);
             return user;
         } else {
             return null;
-        }
+        }*/
+        return null;
     }
     // --------- /Private Helpers --------- //
 }

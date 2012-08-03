@@ -35,7 +35,7 @@ public class TmAuthServiceTest extends SnowTestSupport {
 
         HibernateDaoHelper daoHelper = appInjector.getInstance(HibernateDaoHelper.class);
         UserDao userDao = (UserDao) appInjector.getInstance(UserDao.class);
-        daoHelper.executeHql("delete User s where 1=1");
+        daoHelper.executeHql("delete User s where username='test'");
         userDao.save(user);
         view.closeSessionInView();
 
@@ -57,7 +57,7 @@ public class TmAuthServiceTest extends SnowTestSupport {
         view.openSessionInView();
 
         HibernateDaoHelper daoHelper = appInjector.getInstance(HibernateDaoHelper.class);
-        daoHelper.executeHql("delete User s where 1=1");
+        daoHelper.executeHql("delete User s where username='test'");
         view.closeSessionInView();
 
         RequestContextMock rc = requestContextFactory.createRequestContext(RequestContextMockFactory.RequestMethod.POST, "/_actionResponse.json");
