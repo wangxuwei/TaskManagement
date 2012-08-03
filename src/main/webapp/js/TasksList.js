@@ -62,9 +62,7 @@
 			var task = {
 				name:"New Task",
 				state:"New",
-				createdDate:new Date(),
-				project_id:c.project.id,
-				createdBy_id:1
+				project_id:c.project.id
 			}
 			brite.dao.create("Task",task).done(function(newTask){
 				brite.display("TaskInfo",{taskId:newTask.id});

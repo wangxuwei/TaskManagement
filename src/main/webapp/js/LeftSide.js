@@ -27,9 +27,7 @@
 		
 		$e.on("click",".btnCreateProject",function(){
 			var project = {
-				name:"New project",
-				createdDate:new Date(),
-				createdBy_id:1
+				name:"New project"
 			}
 			brite.dao.create("Project",project).done(function(newProject){
 				brite.display("TasksList",{projectId:newProject.id});
