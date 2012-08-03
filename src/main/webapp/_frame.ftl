@@ -20,10 +20,18 @@
   <body>
   	<div id="page">
 	</div>
+  	[#if user??]
   	<script type="text/javascript">
     		$(function(){
 				brite.display("MainScreen");
 			});
 	</script>
+    [#else]
+    	<script type="text/javascript">
+			$(function(){
+				brite.display("Login");
+			});
+		</script>	
+    [/#if]
   </body>
 </html>

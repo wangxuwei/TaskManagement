@@ -29,13 +29,10 @@
 			}else if(password.val() == "") {
 				password.focus();
 				password.closest("div").addClass("error").find("span").html("Please enter valid password");
-			}else if(password.val() != "heartsnow") {
-				password.focus();
-				password.closest("div").addClass("error").find("span").html("Password error");
 			} else {
 				var type = $(this).attr("data-type");
 				if(type == "login"){
-					login(username.val()).done(function(user){
+					login(username.val(),password.val()).done(function(user){
 						if (typeof user  == "object"){
 							window.location = contextPath;
 						}
@@ -44,7 +41,7 @@
 				}else if(type == "register"){
 					register(username.val(),password.val()).done(function(user){
 						if (typeof user  == "object"){
-							$e.find("form").reset();
+							$e.find("form")[0].reset();
 							alert("Success, you can use this user to login");
 						}
 					});
@@ -61,10 +58,11 @@
 	/**
 	 * login to game app
 	 */
-	function login(username){
+	function login(username,password){
 		var reqData = {
 			action: "login",
-			username: username
+			username: username,
+			password: password
 			
 		}
 		return $.ajax({
@@ -81,7 +79,7 @@
 		var reqData = {
 			action: "register",
 			username: username,
-			password: password,
+			password: password
 		}
 		return $.ajax({
 			type: "POST",
