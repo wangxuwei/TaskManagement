@@ -23,7 +23,6 @@ public class TmAuthService {
 
     @WebModelHandler(startsWith = "/")
     public void pageIndex(@WebModel Map m, RequestContext rc) {
-        //gameTestManager.init();
         User user = getUserFromSession(rc);
         m.put("user", user);
     }
@@ -37,7 +36,6 @@ public class TmAuthService {
                     User user = users.get(0);
                     if (authentication(user, password)) {
                         setUserToSession(rc, user);
-                        String s = JSONObject.fromObject(user).toString();
                         return user;
                     } else {
 
@@ -59,9 +57,9 @@ public class TmAuthService {
         }
     }
 
-    @WebModelHandler
-    public void logout(@WebParam("userId") Long userId) {
-        //remove user id from session
+    @WebActionHandler
+    public void logoff(RequestContext rc) {
+        setUserToSession(rc, null);
     }
 
     @WebActionHandler
@@ -88,25 +86,24 @@ public class TmAuthService {
     // --------- Private Helpers --------- //
     // store the user in the session. If user == null, then, remove it.
     private void setUserToSession(RequestContext rc, User user) {
-/*        if (user != null) {
+        if (user != null) {
             rc.getReq().getSession(true).setAttribute("userid", user.getId());
         } else {
             if (rc.getReq().getSession() != null) {
                 rc.getReq().getSession().removeAttribute("userid");
             }
 
-        }*/
+        }
     }
 
     private User getUserFromSession(RequestContext rc) {
-/*        Long userId = (Long) rc.getReq().getSession().getAttribute("userid");
+        Long userId = (Long) rc.getReq().getSession().getAttribute("userid");
         if (userId != null) {
             User user = userDao.get(userId);
             return user;
         } else {
             return null;
-        }*/
-        return null;
+        }
     }
     // --------- /Private Helpers --------- //
 }
