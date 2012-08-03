@@ -13,6 +13,10 @@
 		<script type="text/javascript">
 		  var jsonUrl = '${_r.contextPath}/_actionResponse.json';	
 		  var contextPath = "${_r.contextPath}";
+		  var _userId = null;
+		  [#if user??]
+		  	_userId = ${user.id};
+		  [/#if]
 		</script>
 	[#-- /set jsonUrl as the actionResponse and contextPath variables --]	
   </head>

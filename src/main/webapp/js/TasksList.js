@@ -54,7 +54,7 @@
 		});
 		
 		$e.on("click",".btnAddUser",function(){
-			brite.display("ProjectUsers");
+			brite.display("ProjectUsers",{projectId:c.project.id});
 		});
 		
 		

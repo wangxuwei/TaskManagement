@@ -27,7 +27,8 @@
 		
 		$e.on("click",".btnCreateProject",function(){
 			var project = {
-				name:"New project"
+				name:"New project",
+				createdBy_id:_userId
 			}
 			brite.dao.create("Project",project).done(function(newProject){
 				brite.display("TasksList",{projectId:newProject.id});
@@ -55,7 +56,13 @@
 		var $e = this.$element;
 		
 		var $projectContainer = $e.find(".projectsContainer").empty();
-		brite.dao.list("Project",{}).done(function(projects){
+		brite.dao.invoke("getJoinProjects","Project",{userId:_userId}).done(function(projects){
+			for(var i=0 ; i < projects.length; i++){
+				var project = projects[i];
+				$projectContainer.append($($("#tmpl-LeftSide-projectItem").render(project)));
+			}
+		});
+		brite.dao.invoke("getCreateProjects","Project",{userId:_userId}).done(function(projects){
 			for(var i=0 ; i < projects.length; i++){
 				var project = projects[i];
 				$projectContainer.append($($("#tmpl-LeftSide-projectItem").render(project)));

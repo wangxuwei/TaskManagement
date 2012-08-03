@@ -12,7 +12,8 @@
 		var reqData = {
 			action : "addUser",
 			objType : objectType,
-			objJson : JSON.stringify(data)
+			userId:data.userId,
+			projectId:data.projectId
 		};
 		var dfd = $.ajax({
 			type : "POST",
@@ -30,7 +31,8 @@
 		var reqData = {
 			action : "removeUser",
 			objType : objectType,
-			objJson : JSON.stringify(data)
+			userId:data.userId,
+			projectId:data.projectId
 		};
 		var dfd = $.ajax({
 			type : "POST",
@@ -42,6 +44,59 @@
 		});
 
 		return dfd.promise();
+	}
+	
+	ProjectDao.prototype.getCreateProjects = function(objectType, opts) {
+		var data = {
+			objType : objectType
+		};
+
+		if(opts) {
+			data.userId = opts.userId;
+		}
+		return $.ajax({
+			type : "GET",
+			url : contextPath + "/getCreateProjects.json",
+			data : data,
+			dataType : "json"
+		}).pipe(function(val) {
+			return val.projects;
+		});
+	}
+	ProjectDao.prototype.getJoinProjects = function(objectType, opts) {
+		var data = {
+			objType : objectType
+		};
+
+		if(opts) {
+			data.userId = opts.userId;
+		}
+		return $.ajax({
+			type : "GET",
+			url : contextPath + "/getJoinProjects.json",
+			data : data,
+			dataType : "json"
+		}).pipe(function(val) {
+			return val.projects;
+		});
+	}
+	
+	ProjectDao.prototype.getUsersNotInProject = function(objectType, opts) {
+		var data = {
+			objType : objectType
+		};
+
+		if(opts) {
+			data.projectId = opts.projectId;
+		}
+		return $.ajax({
+			type : "GET",
+			url : contextPath + "/getUsersNotInProject.json",
+			data : data,
+			dataType : "json"
+		}).pipe(function(val) {
+			return val.users;
+		});
 	}
 	
 	brite.registerDao("Project", new ProjectDao());

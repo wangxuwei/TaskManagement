@@ -1,6 +1,6 @@
 <script id="tmpl-ProjectUsers" type="text/html">
     <div class="ProjectUsers">
-        <h2>Project Users</h2>
+        <h2>Project Users<span class="close icon-remove icon-white"></span></h2>
         <div class="ProjectUsers-main">
 	        <div class="usersContainer">
 	        	 <div class="user" data-obj_type="user" data-obj_id="1">test1<span class="remove icon-remove"></span></div>
@@ -24,4 +24,7 @@
 		<span  class="name">{{:username}}</span>
     	<span class="remove icon-remove"></span>
 	</div>
+</script>
+<script id="tmpl-ProjectUsers-userOptionItem" type="text/html">
+    <option value="{{:id}}">{{:username}}</option>
 </script>
