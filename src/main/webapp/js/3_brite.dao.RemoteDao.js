@@ -87,10 +87,11 @@ var app = app || {};
 			data : reqData,
 			dataType : "json"
 		}).pipe(function(val) {
-			if(val.result.type == "appValidationError") {
-				return $.Deferred().reject(val.result.failedProps).promise();
-			}
- 			return val.result;
+			// if(val.result.type == "appValidationError") {
+				// return $.Deferred().reject(val.result.failedProps).promise();
+			// }
+ 			// return val.result;
+ 			return val;
 		});
 
 		return dfd.promise();
@@ -112,10 +113,11 @@ var app = app || {};
 			data : reqData,
 			dataType : "json"
 		}).pipe(function(val) {
-			if(val.result.type == "appValidationError") {
-				return $.Deferred().reject(val.result.failedProps).promise();
-			}
-			return val.result;
+			// if(val.result.type == "appValidationError") {
+				// return $.Deferred().reject(val.result.failedProps).promise();
+			// }
+			// return val.result;
+			return val;
 		});
 
 	}
