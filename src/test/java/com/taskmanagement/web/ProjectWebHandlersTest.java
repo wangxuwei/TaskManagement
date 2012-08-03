@@ -13,7 +13,9 @@ import com.taskmanagement.entity.User;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -95,6 +97,127 @@ public class ProjectWebHandlersTest extends SnowTestSupport {
 
         assertTrue(true);
 
+    }
+
+    @Test
+    public void testGetUsersNotInProject() {
+        HibernateSessionInViewHandler view = appInjector.getInstance(HibernateSessionInViewHandler.class);
+        User user = new User();
+        user.setName("test");
+        user.setUsername("test");
+        user.setPassword("test");
+        Project project = new Project();
+        project.setName("test");
+        project.setDescription("test");
+        view.openSessionInView();
+
+        HibernateDaoHelper daoHelper = appInjector.getInstance(HibernateDaoHelper.class);
+        UserDao userDao = (UserDao) appInjector.getInstance(UserDao.class);
+        ProjectDao projectDao = appInjector.getInstance(ProjectDao.class);
+
+        daoHelper.executeHql("delete User s where 1=1");
+        daoHelper.executeHql("delete Project s where 1=1");
+
+
+        userDao.save(user);
+        Set<User> userSet = new HashSet<User>();
+        userSet.add(user);
+        project.setUserSet(userSet);
+        projectDao.save(project);
+        user = new User();
+        user.setName("name");
+        user.setUsername("username");
+        user.setPassword("password");
+        userDao.save(user);
+        view.closeSessionInView();
+        RequestContextMock rc = requestContextFactory.createRequestContext(RequestContextMockFactory.RequestMethod.GET, "/getUsersNotInProject.json");
+        Map<String, Object> paramMap = (Map<String, Object>) MapUtil.mapIt("projectId", project.getId().toString());
+        rc.setParamMap(paramMap);
+
+        webController.service(rc);
+
+        String result = rc.getResponseAsString();
+        System.out.println("result = " + result);
+
+        assertTrue(true);
+    }
+
+    @Test
+    public void testGetJoinProjects() {
+        HibernateSessionInViewHandler view = appInjector.getInstance(HibernateSessionInViewHandler.class);
+        User user = new User();
+        user.setName("test");
+        user.setUsername("test");
+        user.setPassword("test");
+        Project project = new Project();
+        project.setName("test");
+        project.setDescription("test");
+        view.openSessionInView();
+
+        HibernateDaoHelper daoHelper = appInjector.getInstance(HibernateDaoHelper.class);
+        UserDao userDao = (UserDao) appInjector.getInstance(UserDao.class);
+        ProjectDao projectDao = appInjector.getInstance(ProjectDao.class);
+
+        daoHelper.executeHql("delete User s where 1=1");
+        daoHelper.executeHql("delete Project s where 1=1");
+
+
+        userDao.save(user);
+        Set<User> userSet = new HashSet<User>();
+        userSet.add(user);
+        project.setUserSet(userSet);
+        projectDao.save(project);
+        view.closeSessionInView();
+        RequestContextMock rc = requestContextFactory.createRequestContext(RequestContextMockFactory.RequestMethod.GET,
+                "/getJoinProjects.json");
+        Map<String, Object> paramMap = (Map<String, Object>) MapUtil.mapIt("userId", user.getId().toString());
+        rc.setParamMap(paramMap);
+
+        webController.service(rc);
+
+        String result = rc.getResponseAsString();
+        System.out.println("result = " + result);
+
+        assertTrue(true);
+    }
+
+
+    @Test
+    public void testgetCreateProjects() {
+        HibernateSessionInViewHandler view = appInjector.getInstance(HibernateSessionInViewHandler.class);
+        User user = new User();
+        user.setName("test");
+        user.setUsername("test");
+        user.setPassword("test");
+        Project project = new Project();
+        project.setName("test");
+        project.setDescription("test");
+
+        view.openSessionInView();
+
+        HibernateDaoHelper daoHelper = appInjector.getInstance(HibernateDaoHelper.class);
+        UserDao userDao = (UserDao) appInjector.getInstance(UserDao.class);
+        ProjectDao projectDao = appInjector.getInstance(ProjectDao.class);
+
+        daoHelper.executeHql("delete User s where 1=1");
+        daoHelper.executeHql("delete Project s where 1=1");
+
+
+        userDao.save(user);
+        project.setCreatedBy_id(user.getId());
+        projectDao.save(project);
+        view.closeSessionInView();
+        RequestContextMock rc = requestContextFactory.createRequestContext(RequestContextMockFactory.RequestMethod.GET,
+                "/getCreateProjects.json");
+        Map<String, Object> paramMap = (Map<String, Object>) MapUtil.mapIt("userId", user.getId().toString());
+        rc.setParamMap(paramMap);
+
+        webController.service(rc);
+
+        String result = rc.getResponseAsString();
+        System.out.println("result = " + result);
+
+        assertTrue(true);
     }
 
 
