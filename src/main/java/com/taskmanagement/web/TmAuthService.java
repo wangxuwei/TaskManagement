@@ -4,8 +4,6 @@ package com.taskmanagement.web;
 import java.util.List;
 import java.util.Map;
 
-import net.sf.json.JSONObject;
-
 import com.britesnow.snow.web.RequestContext;
 import com.britesnow.snow.web.handler.annotation.WebActionHandler;
 import com.britesnow.snow.web.handler.annotation.WebModelHandler;
@@ -38,7 +36,6 @@ public class TmAuthService {
                     User user = users.get(0);
                     if (authentication(user, password)) {
                         setUserToSession(rc, user);
-                        String s = JSONObject.fromObject(user).toString();
                         return user;
                     } else {
 
