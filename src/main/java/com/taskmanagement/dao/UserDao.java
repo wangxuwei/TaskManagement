@@ -9,7 +9,10 @@ import com.taskmanagement.entity.User;
 public class UserDao extends BaseHibernateDao<User> {
     public List<Project> getJoinProjects(Long userId) {
         User user = get(userId);
-        return new ArrayList(user.getProjectSet());
+        if (user != null) {
+            return new ArrayList(user.getProjectSet());
+        }
+        return null;
     }
 
     public List<Project> getCreateProjects(Long userId) {

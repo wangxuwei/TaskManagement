@@ -2,6 +2,7 @@ package com.taskmanagement.dao;
 
 import java.util.List;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -22,7 +23,13 @@ public class UserDaoTest extends SnowTestSupport {
         UserDao userDao = appInjector.getInstance(UserDao.class);
         List ls1 = userDao.getCreateProjects(1L);
         List ls2 = userDao.getJoinProjects(1L);
-        System.out.println("----1>"+ls1);
+        System.out.println("----1>" + ls1);
         System.out.println(ls2);
     }
+
+    @AfterClass
+    public static void dispose() throws Exception {
+      //  SnowTestSupport.releaseWebApplicaton();
+    }
+
 }
