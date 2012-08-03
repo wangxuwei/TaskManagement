@@ -67,6 +67,23 @@
 			});
 		});
 		
+		$e.on("click",".field[data-property='assignee_id']",function(){
+			var $field = $(this);
+			var $fieldValue = $field.find(".field-value");
+			var assignee_id = c.task.assignee_id && c.task.description != null ? c.task.description : "";
+			var $input = $("<select  name='taskAssignee_id'></select>");
+			$input.appendTo($fieldValue.empty());
+		});
+		
+		$e.on("change","select[name='taskAssignee_id']",function(){
+			var taskAssignee_id = $(this).val();
+			var $fieldValue = $(this).closest(".field-value");
+			brite.dao.update("Task",c.task.id,{assignee_id:taskAssignee_id}).done(function(task){
+				c.task = task;
+				$fieldValue.html(c.task.assignee_id);
+			});
+		});
+		
 	}
 	// --------- /Component Interface Implementation ---------- //
 	

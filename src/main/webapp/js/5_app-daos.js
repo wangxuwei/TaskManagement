@@ -65,7 +65,6 @@ var app = app || {};
 		brite.registerDao("ProjectUser",new brite.dao.SQLiteDao("project_user","id",projectUserTable));
 	}else{
 		//register RemoteDao
-		brite.registerDao("Project", new brite.dao.RemoteDao("Project"));
 		brite.registerDao("User", new brite.dao.RemoteDao("User"));
 		brite.registerDao("Task", new brite.dao.RemoteDao("Task"));
 	}
