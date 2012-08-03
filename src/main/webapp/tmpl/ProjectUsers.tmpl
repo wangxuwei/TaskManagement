@@ -1,0 +1,27 @@
+<script id="tmpl-ProjectUsers" type="text/html">
+    <div class="ProjectUsers">
+        <h2>Project Users</h2>
+        <div class="ProjectUsers-main">
+	        <div class="usersContainer">
+	        	 <div class="user" data-obj_type="user" data-obj_id="1">test1<span class="remove icon-remove"></span></div>
+	        	 <div class="user" data-obj_type="user" data-obj_id="1">test2<span class="remove icon-remove"></span></div>
+	        	 <div class="user" data-obj_type="user" data-obj_id="1">test3<span class="remove icon-remove"></span></div>
+	        	 <div class="user" data-obj_type="user" data-obj_id="1">test4<span class="remove icon-remove"></span></div>
+	        	 <div class="user" data-obj_type="user" data-obj_id="1">test5<span class="remove icon-remove"></span></div>
+	        </div>
+	        
+	        <div class="ProjectUsers-bottom">
+		  		<select name="username">
+		  		<option>Please select a user</option>
+				</select>
+			  	<div class="btn btnAdd">AddUser</div>
+		  	</div>
+	    </div>
+    </div>
+</script>
+<script id="tmpl-ProjectUsers-userItem" type="text/html">
+    <div class="user" data-obj_type="user" data-obj_id="{{:id}}">
+		<span  class="name">{{:username}}</span>
+    	<span class="remove icon-remove"></span>
+	</div>
+</script>
