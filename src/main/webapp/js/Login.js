@@ -67,7 +67,7 @@
 		}
 		return $.ajax({
 			type: "POST",
-			url: jsonUrl,
+			url: "login.do",
 			data: reqData,
 			dataType: "json"
 		}).pipe( function(val) {
@@ -77,13 +77,12 @@
 	
 	function register(username,password){
 		var reqData = {
-			action: "register",
 			username: username,
 			password: password
 		}
 		return $.ajax({
 			type: "POST",
-			url: jsonUrl,
+			url: "register.do",
 			data: reqData,
 			dataType: "json"
 		}).pipe( function(val) {

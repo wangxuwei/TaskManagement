@@ -76,14 +76,13 @@ var app = app || {};
 	// to reuse update
 	RemoteDao.prototype.create = function(objectType, data) {
 		var reqData = {
-			action : "daoSave",
 			objType : objectType,
 			objJson : JSON.stringify(data),
 			create : true
 		};
 		var dfd = $.ajax({
 			type : "POST",
-			url : jsonUrl,
+			url : "daoSave.do",
 			data : reqData,
 			dataType : "json"
 		}).pipe(function(val) {
@@ -100,7 +99,6 @@ var app = app || {};
 
 	RemoteDao.prototype.update = function(objectType, id, data) {
 		var reqData = {
-			action : "daoSave",
 			objType : objectType,
 			obj_id : id,
 			objJson : JSON.stringify(data),
@@ -109,7 +107,7 @@ var app = app || {};
 
 		return $.ajax({
 			type : "POST",
-			url : jsonUrl,
+			url : "daoSave.do",
 			data : reqData,
 			dataType : "json"
 		}).pipe(function(val) {
@@ -125,14 +123,13 @@ var app = app || {};
 
 	RemoteDao.prototype.remove = function(objectType, id) {
 		var reqData = {
-			action : "daoDelete",
 			objType : objectType
 		}
 		reqData.obj_id = id;
 
 		var dfd = $.ajax({
 			type : "POST",
-			url : jsonUrl,
+			url : "daoDelete.do",
 			data : reqData,
 			dataType : "json"
 		}).pipe(function(val) {
