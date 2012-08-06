@@ -10,7 +10,6 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.taskmanagement.dao.UserDao;
 import com.taskmanagement.entity.User;
-import net.sf.json.JSONObject;
 
 import java.util.List;
 import java.util.Map;
@@ -84,7 +83,6 @@ public class TmAuthService {
     }
 
     // --------- Private Helpers --------- //
-    // store the user in the session. If user == null, then, remove it.
     private void setUserToSession(RequestContext rc, User user) {
         if (user != null) {
             rc.getReq().getSession(true).setAttribute("userid", user.getId());
