@@ -10,14 +10,13 @@
 	
 	ProjectDao.prototype.addUser = function(objectType, data) {
 		var reqData = {
-			action : "addUser",
 			objType : objectType,
 			userId:data.userId,
 			projectId:data.projectId
 		};
 		var dfd = $.ajax({
 			type : "POST",
-			url : jsonUrl,
+			url : "addUser.do",
 			data : reqData,
 			dataType : "json"
 		}).pipe(function(val) {
@@ -29,14 +28,13 @@
 	
 	ProjectDao.prototype.removeUser = function(objectType, data) {
 		var reqData = {
-			action : "removeUser",
 			objType : objectType,
 			userId:data.userId,
 			projectId:data.projectId
 		};
 		var dfd = $.ajax({
 			type : "POST",
-			url : jsonUrl,
+			url : "removeUser.do",
 			data : reqData,
 			dataType : "json"
 		}).pipe(function(val) {
@@ -60,7 +58,7 @@
 			data : data,
 			dataType : "json"
 		}).pipe(function(val) {
-			return val.projects;
+			return val.projects || [];
 		});
 	}
 	ProjectDao.prototype.getJoinProjects = function(objectType, opts) {
@@ -77,7 +75,7 @@
 			data : data,
 			dataType : "json"
 		}).pipe(function(val) {
-			return val.projects;
+			return val.projects || [];
 		});
 	}
 	
@@ -95,7 +93,7 @@
 			data : data,
 			dataType : "json"
 		}).pipe(function(val) {
-			return val.users;
+			return val.users || [];
 		});
 	}
 	

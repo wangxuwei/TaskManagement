@@ -4,7 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Task Management</title>
     
-    [@webBundle path="/bootstrap/css/" type="css" /]
+    <link rel="stylesheet" type="text/css" href="${_r.contextPath}/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${_r.contextPath}/bootstrap/css/bootstrap-responsive.min.css">
     <link rel="stylesheet" type="text/css" href="${_r.contextPath}/css/app-all.less.css">
     [@webBundle path="/js/" type="js" /]
     

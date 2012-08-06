@@ -77,11 +77,10 @@
 	}
 	function logoff(){
 		var reqData = {
-			action: "logoff"
-		}
+		};
 		return $.ajax({
 			type: "POST",
-			url: jsonUrl,
+			url: "logoff.do",
 			data: reqData,
 			dataType: "json"
 		}).pipe( function(val) {
